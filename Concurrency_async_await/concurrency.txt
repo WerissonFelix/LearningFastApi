@@ -1,0 +1,18 @@
+
+Asynchronous code just means that the language has a way to tell
+the computer / program that at some point in the code, it will
+have to wait for something else to finish somewhere else.
+
+Concurrency is the ability of a program to manage multiple tasks during
+overlapping periods of time. Tasks can make progress by taking turns, even
+when only one task is executing at a time.
+
+Parallelism is the ability to execute multiple tasks at the exact same time,
+usually by using multiple CPU cores.
+
+
+Concurrency is like a cook preparing multiple dishes by switching between them.
+Parallelism is like multiple cooks preparing different dishes at the same time.
+
+Concurrency is about managing multiple tasks, while parallelism is about executing
+multiple tasks simultaneously.
