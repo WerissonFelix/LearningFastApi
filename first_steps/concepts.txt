@@ -1,0 +1,20 @@
+
+A path operation defines how the API responds to an HTTP request at
+ a specific path.
+
+- `@app.get("/")`: handles GET requests to the root path.
+- `@app.post("/")`: handles POST requests to the root path.
+- `@app.put("/")`: handles PUT requests.
+- `@app.delete("/")`: handles DELETE requests.
+
+The function below the decorator handles the request.
+
+
+FastAPI converts returned Python dictionaries and other supported data
+structures into JSON responses.
+
+
+FastAPI automatically generates an OpenAPI schema describing the API's paths,
+operations, parameters, and request and response formats.
+
+
