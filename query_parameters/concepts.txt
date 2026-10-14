@@ -1,0 +1,11 @@
+Query parameters are function parameters that are not part of the path parameters.
+
+Query parameter values are received as strings and converted to the type declared in the
+function parameter, if applicable.
+
+Query parameters with a default value are optional.
+
+Set the default value to None to make a query parameter optional
+without specifying a particular value.
+
+To make a query parameter required, do not declare a default value.
