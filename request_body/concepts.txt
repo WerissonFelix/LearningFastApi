@@ -1,0 +1,9 @@
+
+A request body is data sent by the client to the API, while a response
+body is data sent by the API to the client.
+
+To declare a request body in FastAPI, use Pydantic models.
+
+Request bodies are commonly used with `POST`, `PUT`, `PATCH`, and sometimes `DELETE`.
+
+Using a body with `GET` is discouraged because it may not be supported by documentation tools or proxies.
