@@ -1,0 +1,4 @@
+- **`gt`**: Greater than (>).The constraint may not be displayed as minimum: x in the docs
+- **`ge`**: Greater than or equal to (>=).The constraint is displayed as minimum: x in the docs
+- **`lt`**: Less than (<).The constraint may not be displayed as maximum: x in the docs
+- **`le`**: Less than or equal to (<=).The constraint is displayed as maximum: x in the docs
