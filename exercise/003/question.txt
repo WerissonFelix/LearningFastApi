@@ -1,0 +1,65 @@
+Exercise: Product API — Path Parameters and Numeric Validations
+
+Difficulty: Intermediate
+
+Goal:
+Create a small API endpoint based entirely on FastAPI's "Path Parameters and Numeric Validations" topic, using Annotated syntax only.
+
+1. Create the endpoint
+
+Create a file named product_api.py.
+
+Create a GET endpoint with this path:
+
+/products/{product_id}
+
+The endpoint must accept these parameters:
+
+- product_id: int — use Path() with Annotated.
+- weight: float — use Query() with Annotated.
+
+2. Add metadata and validations
+
+For product_id:
+- Set the title to "The ID of the product".
+- The value must be greater than or equal to 1.
+- The value must be less than or equal to 500.
+
+For weight:
+- The value must be strictly greater than 0.
+- The value must be strictly less than 50.5.
+
+3. Return the results
+
+The endpoint should return a dictionary containing the product ID and weight.
+
+Example request:
+/products/10?weight=2.5
+
+Expected response:
+{
+  "product_id": 10,
+  "weight": 2.5
+}
+
+4. Test your validations
+
+Test these requests using /docs and decide whether each should succeed or return a validation error:
+
+1. /products/1?weight=0.1
+2. /products/0?weight=2.5
+3. /products/501?weight=2.5
+4. /products/10?weight=0
+5. /products/10?weight=50.5
+6. /products/10?weight=50.4
+
+Rules:
+- Use Annotated for both parameters.
+- Do not use the older style product_id: int = Path(...).
+- Do not use Pydantic models, request bodies, databases, or custom validation functions.
+- You may use FastAPI, Path, Query, and Annotated.
+
+Challenge:
+After implementing the endpoint, open /docs and check how the numeric constraints are displayed for both parameters.
+
+When finished, review your code and explain any mistakes before suggesting improvements.
