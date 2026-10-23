@@ -1,0 +1,96 @@
+
+Objective
+
+Develop a FastAPI endpoint that receives an order containing customer information, product details,
+and an optional discount. Use nested Pydantic models to represent the data structure and validate
+the incoming request.
+
+Requirements
+
+1. Define the Pydantic models
+
+Create the following models:
+
+Address
+
+street: string.
+
+city: string.
+
+postal_code: string.
+
+Customer
+
+name: string.
+
+email: string.
+
+address: an Address object.
+
+Product
+
+name: string.
+
+price: float greater than zero.
+
+quantity: integer greater than zero.
+
+tags: an optional set of strings.
+
+Order
+
+customer: a Customer object.
+
+products: a list of Product objects.
+
+discount: an optional float between 0 and 100, inclusive.
+
+notes: an optional string.
+
+2. Implement the endpoint
+
+Create a POST /orders/ endpoint that receives an Order object in the request body.
+
+The endpoint must:
+
+Accept and validate the order data.
+
+Calculate the subtotal by multiplying the price of each product by its quantity and summing the results.
+
+Apply the discount if one is provided. The discount represents a percentage of the subtotal.
+
+Return the order data, the subtotal, the discount applied, and the final total.
+
+If no discount is provided, the final total must be equal to the subtotal.
+
+3. Test the endpoint
+
+Test your implementation with the following cases:
+
+An order containing two or more products.
+
+An order without a discount.
+
+An order with a 10% discount.
+
+A product with a negative price.
+
+A product with a quantity of zero.
+
+An order with an invalid nested address.
+
+An order containing repeated tags for a product.
+
+Observe how FastAPI and Pydantic handle valid and invalid requests.
+
+Success Criteria
+
+All models are correctly defined.
+
+Nested models are validated correctly.
+
+Invalid product prices, quantities, and discounts are rejected.
+
+The subtotal and final total are calculated correctly.
+
+The endpoint returns a structured JSON response.
