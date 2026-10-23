@@ -1,0 +1,4 @@
+Basically, a Pydantic model is a Python class, so it has its own attributes,
+and each attribute has a declared type
+
+Based on this, a model attribute can have another model as its type
