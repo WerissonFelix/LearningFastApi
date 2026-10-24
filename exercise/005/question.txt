@@ -1,0 +1,130 @@
+Objective
+
+Develop a FastAPI endpoint for a task-management application. The endpoint must combine
+path parameters, query parameters, multiple body parameters, and custom validation using
+Pydantic and FastAPI's Body function.
+
+Requirements
+
+1. Define the Pydantic model
+
+Create a Task model with the following attributes:
+
+title: string.
+
+description: optional string.
+
+priority: integer between 1 and 5, inclusive.
+
+completed: boolean, defaulting to False.
+
+2. Implement the endpoint
+
+Create a POST /projects/{project_id}/tasks/ endpoint.
+
+The endpoint must receive the following parameters:
+
+Path parameter
+
+project_id: integer greater than zero.
+
+Query parameters
+
+notify: boolean, defaulting to False.
+
+include_metadata: boolean, defaulting to True.
+
+Body parameters
+
+task: a Task object.
+
+created_by: a string representing the user who created the task.
+
+priority_level: integer greater than or equal to 1, defaulting to 1.
+
+Use FastAPI's Body function to configure the body parameters as required below.
+
+3. Configure the request body
+
+The request body must contain the following top-level keys:
+
+task: an object containing the task data.
+
+created_by: a string identifying the creator.
+
+priority_level: an integer representing the priority level.
+
+Use Body to ensure that task and created_by are represented by their respective keys in the JSON body.
+
+Configure priority_level with a default value of 1 and a minimum allowed value of 1.
+
+The request body must follow this general structure:
+
+{
+"task": {
+"title": "Learn FastAPI",
+"description": "Study request parameters",
+"priority": 3,
+"completed": false
+},
+"created_by": "student",
+"priority_level": 2
+}
+
+4. Define the response
+
+The endpoint must return a JSON object containing:
+
+project_id: the ID of the project.
+
+task: the validated task data.
+
+created_by: the creator's name.
+
+notify: the value received from the query string.
+
+include_metadata: the value received from the query string.
+
+priority_level: the priority level received in the body.
+
+metadata: an object containing the length of the task title, included only when include_metadata is True.
+
+When include_metadata is False, omit the metadata key entirely from the response.
+
+5. Test the endpoint
+
+Test your implementation with the following cases:
+
+Create a task by providing all parameters.
+
+Create a task without specifying either query parameter.
+
+Send a task with a priority of 6.
+
+Send a project_id of 0.
+
+Omit created_by from the request body.
+
+Send a priority_level of 0.
+
+Omit priority_level and verify that its default value is used.
+
+Set include_metadata to False and verify that the metadata is omitted.
+
+Set notify to True and verify that the endpoint receives the correct value.
+
+Use the interactive documentation at /docs or another HTTP client to test your endpoint.
+
+Success Criteria
+
+Path, query, and body parameters are correctly declared.
+
+The request body has the expected structure.
+
+The Task model validates the incoming task data.
+
+The priority_level field respects its minimum value and default.
+
+The response includes the correct data and conditionally includes metadata.
+
+Invalid requests produce appropriate validation errors.
