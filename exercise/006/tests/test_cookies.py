@@ -1,4 +1,5 @@
 from fastapi.testclient import TestClient
+from urllib.parse import unquote
 
 from main import app
 
@@ -27,11 +28,13 @@ def test_set_preferences():
     assert response.status_code == 200
     assert response.json() == {"Preferences": "Saved"}
 
-    cookie = response.cookies.get("user_preferences")
+    cookie = response.cookies.get("user_preferences")   
     assert cookie is not None
 
-    saved_preferences = json.loads(cookie)
+    
+    saved_preferences = json.loads(unquote(cookie))
     assert saved_preferences == payload
+    
 
 
 def test_get_preferences_with_cookie():
@@ -51,9 +54,9 @@ def test_get_preferences_with_cookie():
     assert response.status_code == 200
     assert response.json()["Preferences"] == preferences
 
-
 def test_get_preferences_without_cookie():
-    response = client.get("/preferences/")
+    with TestClient(app) as client:
+        response = client.get("/preferences/")
 
     assert response.status_code == 200
     assert response.json()["Preferences"] == {
@@ -61,7 +64,6 @@ def test_get_preferences_without_cookie():
         "language": "en",
         "notifications": True,
     }
-
 
 def test_invalid_theme():
     payload = {

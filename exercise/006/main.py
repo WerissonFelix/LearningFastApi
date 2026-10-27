@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Cookie, Response, HTTPException
+from urllib.parse import quote, unquote
 from typing import Annotated
 from pydantic import ValidationError
 
@@ -14,7 +15,7 @@ app = FastAPI()
 async def set_preferences(user_preferences: Preferences, response: Response):
     response.set_cookie(
         key="user_preferences",
-        value=json.dumps(user_preferences.model_dump()),
+        value=quote(json.dumps(user_preferences.model_dump())),
         httponly=True
     )
     return {"Preferences": "Saved"}
@@ -26,7 +27,7 @@ async def get_preferences(user_preferences: Annotated[str | None, Cookie()] = No
         return {'Preferences': Preferences()}
     
     try:
-        preferences_data = json.loads(user_preferences)        
+        preferences_data = json.loads(unquote(user_preferences))     
         preferences = Preferences.model_validate(preferences_data)
     except (json.JSONDecodeError, ValidationError):
         raise HTTPException(

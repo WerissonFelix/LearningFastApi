@@ -9,7 +9,7 @@ class Preferences(BaseModel):
     
     """
     
-    theme: Literal["light", "dark"] = "light",
-    language: Literal["en", "pt", "es"] = "en",
+    theme: Literal["light", "dark"] = "light"
+    language: Literal["en", "pt", "es"] = "en"
     notifications: bool = True
     
