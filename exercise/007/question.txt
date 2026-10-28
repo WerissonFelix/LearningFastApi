@@ -1,0 +1,53 @@
+Exercise: HTTP Headers in FastAPI
+
+Part 1 — Individual Header Parameters
+
+Create a GET /items/ endpoint that receives the following headers:
+
+- user_agent: an optional string.
+- accept_language: an optional string.
+- x_request_id: a required string.
+
+Requirements:
+- Use Annotated and Header() appropriately.
+- Return all three values in a JSON response.
+- If an optional header is missing, its value should be `None`.
+- Remember that FastAPI converts underscores in parameter names into hyphens in HTTP header names by default.
+
+Part 2 — Header Parameter Models
+
+Create a Pydantic model named CommonHeaders with the following fields:
+
+- host: a required string.
+- save_data: an optional boolean.
+- if_modified_since: an optional string.
+- x_request_id: a required string.
+- x_tag: an optional list of strings.
+
+Create a separate GET /items/headers/ endpoint that receives these headers through the model.
+
+Requirements:
+- Use Annotated and Header() to declare the header model.
+- Configure the model to forbid extra headers that are not declared in the model.
+- Return the received headers in a JSON response.
+- Test whether multiple occurrences of the X-Tag header are collected into a list.
+
+Test Cases
+
+Test your endpoints using /docs or an HTTP client such as requests.
+
+1. Send all required headers and check whether the request succeeds.
+2. Omit the optional headers and check their default values.
+3. Omit `X-Request-ID` and check the validation error.
+4. Send an undeclared header and check whether the request is rejected.
+5. Send multiple `X-Tag` headers and check whether their values are received as a list.
+
+ Constraints
+
+- Use Annotated for your parameter declarations.
+- Use Header() instead of manually accessing Request.headers.
+- Use a Pydantic model for Part 2.
+- Keep the two endpoints separate so you can compare both approaches.
+
+Goal: Understand how FastAPI extracts header values,
+handles optional and required headers, converts header names, and groups
