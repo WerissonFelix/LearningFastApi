@@ -38,9 +38,8 @@ Test your endpoints using /docs or an HTTP client such as requests.
 
 1. Send all required headers and check whether the request succeeds.
 2. Omit the optional headers and check their default values.
-3. Omit `X-Request-ID` and check the validation error.
-4. Send an undeclared header and check whether the request is rejected.
-5. Send multiple `X-Tag` headers and check whether their values are received as a list.
+3. Omit X-Request-ID and check the validation error.
+4. Send multiple X-Tag headers and check whether their values are received as a list.
 
  Constraints
 
