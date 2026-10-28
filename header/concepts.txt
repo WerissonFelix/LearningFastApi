@@ -1,0 +1,76 @@
+
+An HTTP header is a field in an HTTP request or response that carries additional information 
+about the communication between a client and a server.
+
+Headers are composed of a name and a value, separated by a colon. 
+
+For example:
+
+http
+Host: 127.0.0.1:8000
+Content-Type: application/json
+User-Agent: Mozilla/5.0
+
+
+Headers provide metadata about an HTTP request or response. They can be used to:
+
+- Identify the destination Host identifies the host targeted by the request.
+- Describe the content Content-Type indicates the media type of the message body.
+- Provide authentication information: Authorization can carry credentials or access tokens.
+- Control caching Cache-Control specifies caching directives.
+- Identify the client User-Agent describes the client making the request.
+- Communicate preferences Accept indicates which response media types the client can handle.
+
+Headers are different from the request body. The body contains the main data being sent, while headers
+provide information about the request or response.
+
+- user_agent maps to User-Agent.
+- save_data maps to Save-Data.
+- if_modified_since maps to If-Modified-Since.
+
+This behavior can be disabled using Header(convert_underscores=False).
+
+
+Not every header behaves the same way. Some headers have specific meanings defined by HTTP standards, and
+browsers may restrict how certain headers can be set.
+
+Host
+
+The Host header identifies the host and, when applicable, the port targeted by an HTTP/1.1 request.
+
+Example:
+
+Host: 127.0.0.1:8000
+
+When using FastAPI's Swagger UI in a browser, you generally cannot freely override this header.
+The browser controls it according to the destination of the request.
+
+For example, if Swagger UI sends a request to http://127.0.0.1:8000/items/, the Host header will
+normally contain 127.0.0.1:8000, even if you try to enter a different value.
+
+This is not a conversion performed by FastAPI or Pydantic. The browser sends the actual host value.
+
+Content-Length
+
+Indicates the size of the message body in bytes. HTTP clients and servers must handle this header
+consistently with the message framing rules. Clients generally manage it automatically.
+
+Content-Type
+
+Indicates the media type of the message body, such as application/json. Its value should match the actual
+content being sent.
+
+Authorization
+
+Carries authentication credentials, such as a bearer token. It is commonly used to authenticate requests, 
+and its value must be handled securely.
+
+User-Agent
+
+Identifies the client software making a request. Browsers may restrict attempts to modify this header.
+
+Other Browser-Controlled Headers
+
+Browsers restrict JavaScript from setting certain headers, including many Sec- headers and some
+connection-related headers. These restrictions help protect browser security and prevent scripts
+ from manipulating protocol-level details.
