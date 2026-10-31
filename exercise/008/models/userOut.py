@@ -2,4 +2,6 @@ from pydantic import BaseModel
 
 
 class UserOut(BaseModel):
-    pass 
+    id: str 
+    username: str
+    

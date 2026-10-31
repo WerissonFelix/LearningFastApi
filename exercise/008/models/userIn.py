@@ -1,5 +1,5 @@
-from pydantic import BaseModel
+from models.userOut import UserOut
 
-
-class UserIn(BaseModel):
-    pass
+class UserIn(UserOut): 
+    password: str
+    is_admin: bool
